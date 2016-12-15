@@ -94,6 +94,13 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+           beforeEach(function(done) {
+             loadFeed(0, done);
+           });
+          // would $('.feed > .entry-link > .entry') work, or would that be a different test?
+           it('has at least one .entry within the .feed', function() {
+             expect($('.feed .entry').length).not.toBe(0);
+           });
     });
     /* TODO: Write a new test suite named "New Feed Selection"
 
