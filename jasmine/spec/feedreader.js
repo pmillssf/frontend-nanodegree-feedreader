@@ -106,8 +106,6 @@ $(function() {
     describe('New Feed Selection', function() {
       var feedZero;
       var feedOne;
-      var feedTwo;
-      var feedThree;
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
@@ -119,24 +117,17 @@ $(function() {
 
              loadFeed(1, function() {
                feedOne = $('.feed').html();
-
-               loadFeed(2, function() {
-                 feedTwo = $('.feed').html();
-
-                loadFeed(3, function() {
-                  feedThree = $('.feed').html();
-                  done();
-                });
-              });
+               done();
             });
           });
         });
       it('checks that a new feed load has different content', function() {
         expect(feedZero).not.toEqual(feedOne);
-        expect(feedOne).not.toEqual(feedTwo);
-        expect(feedTwo).not.toEqual(feedThree);
-        expect(feedThree).not.toEqual(feedZero);
       })
+
+      afterEach(function(done) {
+        loadFeed(0, done);
+      });
     });
 
 }());
