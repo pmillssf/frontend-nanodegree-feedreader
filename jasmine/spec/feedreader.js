@@ -65,7 +65,7 @@ $(function() {
          */
          // The body should load with class "menu-hidden" to hide the menu on load
          it('has the menu hidden by default', function() {
-           body = $('body');
+           var body = $('body');
            expect(body.hasClass('menu-hidden')).toBeTruthy();
          });
 
@@ -74,6 +74,14 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+          it('ensures the menu visibility on click', function() {
+            var menuClicker = $('.menu-icon-link')
+            var body = $('body');
+            menuClicker.click();
+            expect(body.hasClass('menu-hidden')).toBeFalsy();
+            menuClicker.click();
+            expect(body.hasClass('menu-hidden')).toBeTruthy();
+          });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
