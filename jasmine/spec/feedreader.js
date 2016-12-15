@@ -4,7 +4,7 @@
  */
 $(function() {
     describe('RSS Feeds', function() {
-      var feedNum = allFeeds.length;
+        var feedNum = allFeeds.length;
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty.
@@ -14,79 +14,79 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-         //Loops through each feed to make sure the feed has a URL
-         // defined and the URL is not empty
-         it('has a url for each feed', function() {
-           for (i = 0; i < feedNum; i++){
-             expect(allFeeds[i].url).toBeDefined();
-             expect(allFeeds[i].url.length).not.toBe(0);
-           };
+        //Loops through each feed to make sure the feed has a URL
+        // defined and the URL is not empty
+        it('has a url for each feed', function() {
+            for (i = 0; i < feedNum; i++) {
+                expect(allFeeds[i].url).toBeDefined();
+                expect(allFeeds[i].url.length).not.toBe(0);
+            }
 
-         });
+        });
 
-         // Loops through each feed to make sure the name is defined
-         // and that the name is not empty
-         it('has a name for each feed', function() {
-           for (i = 0; i < feedNum; i++){
-             expect(allFeeds[i].name).toBeDefined();
-             expect(allFeeds[i].name.length).not.toBe(0);
-           };
-         });
+        // Loops through each feed to make sure the name is defined
+        // and that the name is not empty
+        it('has a name for each feed', function() {
+            for (i = 0; i < feedNum; i++) {
+                expect(allFeeds[i].name).toBeDefined();
+                expect(allFeeds[i].name.length).not.toBe(0);
+            }
+        });
     });
 
     describe('The Menu', function() {
-      var body = $('body');
+        var body = $('body');
 
-         // Makes sure the body loads with class "menu-hidden"
-         //to hide the menu on load
-         it('has the menu hidden by default', function() {
-           expect(body.hasClass('menu-hidden')).toBeTruthy();
-         });
+        // Makes sure the body loads with class "menu-hidden"
+        //to hide the menu on load
+        it('has the menu hidden by default', function() {
+            expect(body.hasClass('menu-hidden')).toBeTruthy();
+        });
 
-          // Makes sure the menu changes visibility when the menu icon
-          // is clicked
-          it('ensures the menu visibility on click', function() {
-            var menuClicker = $('.menu-icon-link')
+        // Makes sure the menu changes visibility when the menu icon
+        // is clicked
+        it('ensures the menu visibility on click', function() {
+            var menuClicker = $('.menu-icon-link');
             menuClicker.click();
             expect(body.hasClass('menu-hidden')).toBeFalsy();
             menuClicker.click();
             expect(body.hasClass('menu-hidden')).toBeTruthy();
-          });
+        });
     });
 
     describe('Initial Entries', function() {
 
-           beforeEach(function(done) {
-             loadFeed(0, done);
-           });
-          // Checks that there is at least one .entry within the .feed container
-           it('has at least one .entry within the .feed', function() {
-             expect($('.feed .entry').length).not.toBe(0);
-           });
+        beforeEach(function(done) {
+            loadFeed(0, done);
+        });
+        // Checks that there is at least one .entry within the .feed container
+        it('has at least one .entry within the .feed', function() {
+            expect($('.feed .entry').length).not.toBe(0);
+        });
     });
 
     describe('New Feed Selection', function() {
-      var feedZero;
-      var feedOne;
-         // Loads feed 0 and feed 1 to compare the content and make sure
-         // it has changed
-         beforeEach(function(done) {
-           loadFeed(0, function() {
-             feedZero = $('.feed').html();
+        var feedZero;
+        var feedOne;
+        // Loads feed 0 and feed 1 to compare the content and make sure
+        // it has changed
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                feedZero = $('.feed').html();
 
-             loadFeed(1, function() {
-               feedOne = $('.feed').html();
-               done();
+                loadFeed(1, function() {
+                    feedOne = $('.feed').html();
+                    done();
+                });
             });
-          });
         });
-      it('checks that a new feed load has different content', function() {
-        expect(feedZero).not.toEqual(feedOne);
-      })
+        it('checks that a new feed load has different content', function() {
+            expect(feedZero).not.toEqual(feedOne);
+        });
 
-      afterEach(function(done) {
-        loadFeed(0, done);
-      });
+        afterEach(function(done) {
+            loadFeed(0, done);
+        });
     });
 
 }());
