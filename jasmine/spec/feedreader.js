@@ -4,6 +4,7 @@
  */
 $(function() {
     describe('RSS Feeds', function() {
+      var feedNum = allFeeds.length;
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty.
@@ -16,7 +17,6 @@ $(function() {
          //Loops through each feed to make sure the feed has a URL
          // defined and the URL is not empty
          it('has a url for each feed', function() {
-           var feedNum = allFeeds.length;
            for (i = 0; i < feedNum; i++){
              expect(allFeeds[i].url).toBeDefined();
              expect(allFeeds[i].url.length).not.toBe(0);
@@ -27,7 +27,6 @@ $(function() {
          // Loops through each feed to make sure the name is defined
          // and that the name is not empty
          it('has a name for each feed', function() {
-           var feedNum = allFeeds.length;
            for (i = 0; i < feedNum; i++){
              expect(allFeeds[i].name).toBeDefined();
              expect(allFeeds[i].name.length).not.toBe(0);
@@ -36,11 +35,11 @@ $(function() {
     });
 
     describe('The Menu', function() {
+      var body = $('body');
 
          // Makes sure the body loads with class "menu-hidden"
          //to hide the menu on load
          it('has the menu hidden by default', function() {
-           var body = $('body');
            expect(body.hasClass('menu-hidden')).toBeTruthy();
          });
 
@@ -48,7 +47,6 @@ $(function() {
           // is clicked
           it('ensures the menu visibility on click', function() {
             var menuClicker = $('.menu-icon-link')
-            var body = $('body');
             menuClicker.click();
             expect(body.hasClass('menu-hidden')).toBeFalsy();
             menuClicker.click();
